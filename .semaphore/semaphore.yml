@@ -1,0 +1,25 @@
+version: v1.0
+name: Main pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Build Docker image
+    task:
+      secrets:
+        - name: docker-hub-creds
+      jobs:
+        - name: Build Docker image
+          commands:
+            - checkout
+            - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
+            - docker build -t ${DOCKER_USERNAME}/${SEMAPHORE_PROJECT_NAME}:${SEMAPHORE_GIT_SHA} .
+            - docker push ${DOCKER_USERNAME}/${SEMAPHORE_PROJECT_NAME}:$SEMAPHORE_GIT_SHA
+promotions:
+  - name: Deploy
+    pipeline_file: deploy.yml
+    auto_promote_on:
+      - result: passed
+        branch:
+         - master

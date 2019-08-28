@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+data:
+  SPRING_APPLICATION_JSON: >-
+    {{- toJson .Values.application | nindent 4 }}
