@@ -1,14 +1,14 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: {{ .Chart.name }}
+  name: {{ .Chart.Name }}
 spec:
-  schedule: {{ .Values.schedule }}
+  schedule: "*/15 * * * *"
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-            - name: {{ .Chart.Name }}
-              image: "{{ .Values.image.group }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          - name: {{ .Chart.Name }}
+            image: "{{ .Values.image.group }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           restartPolicy: OnFailure
