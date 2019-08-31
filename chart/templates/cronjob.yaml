@@ -11,4 +11,7 @@ spec:
           containers:
           - name: {{ .Chart.Name }}
             image: "{{ .Values.image.group }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+            env:
+            - name: HEAP_SIZE
+              value: {{ .Values.heapSize }}
           restartPolicy: OnFailure
