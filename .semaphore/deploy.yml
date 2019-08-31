@@ -21,3 +21,4 @@ blocks:
             - helm upgrade $RELEASE_NAME ./chart
                 --values /home/semaphore/values.yaml
                 --set image.tag=${SEMAPHORE_GIT_SHA}
+                --install
