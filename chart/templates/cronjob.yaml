@@ -4,6 +4,7 @@ metadata:
   name: {{ .Chart.Name }}
 spec:
   schedule: "*/15 * * * *"
+  concurrencyPolicy: Replace
   jobTemplate:
     spec:
       template:
@@ -18,4 +19,3 @@ spec:
               value: >-
                 {{- toJson .Values.application | nindent 16 }}
           restartPolicy: OnFailure
-          concurrencyPolicy: Replace
