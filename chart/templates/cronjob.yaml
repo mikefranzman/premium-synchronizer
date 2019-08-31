@@ -14,4 +14,7 @@ spec:
             env:
             - name: HEAP_SIZE
               value: {{ .Values.heapSize }}
+            - name: SPRING_APPLICATION_JSON
+              value: >-
+                {{- toJson .Values.application | nindent 16 }}
           restartPolicy: OnFailure

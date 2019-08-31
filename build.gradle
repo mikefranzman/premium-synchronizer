@@ -24,6 +24,8 @@ dependencies {
     implementation group: 'bot.groovy', name: 'spring-commons', version: 'd8907c7'
     implementation group: 'bot.groovy', name: 'chargebee-mirror-client', version: '0.1'
     implementation group: 'org.mongodb', name: 'mongodb-driver-reactivestreams', version: '1.12.0'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.0.pr1'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.10.0.pr1'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0.pr1'
     implementation group: 'org.json', name: 'json', version: '20190722'
 
