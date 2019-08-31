@@ -18,3 +18,4 @@ spec:
               value: >-
                 {{- toJson .Values.application | nindent 16 }}
           restartPolicy: OnFailure
+          concurrencyPolicy: Replace
