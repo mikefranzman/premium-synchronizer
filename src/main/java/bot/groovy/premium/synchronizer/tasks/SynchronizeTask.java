@@ -38,6 +38,8 @@ public class SynchronizeTask implements CommandLineRunner {
             .collect(Collectors.toMap(Tuple2::getT1, Tuple2::getT2))
             .delayUntil(upgradeService::setStatusForUsers)
             .block();
+
+        System.exit(0);
     }
 
     public Mono<Subscription> getSubscription(String subscriptionId) {
