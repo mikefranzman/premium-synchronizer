@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: {{ .Chart.Name }}
 spec:
-  schedule: "*/15 * * * *"
+  schedule: "*/2 * * * *"
   concurrencyPolicy: Replace
   jobTemplate:
     spec:
