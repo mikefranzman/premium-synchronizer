@@ -2,7 +2,7 @@ schedule: "*/15 * * * *"
 image:
   group: nikolaspikolas
   name: premium-synchronizer
-heapSize: 400m
+heapSize: 250m
 application:
   logging:
     level:

@@ -1,5 +1,5 @@
 version: v1.0
-name: Deploy
+name: Deploy to Development
 agent:
   machine:
     type: e1-standard-2
@@ -9,15 +9,15 @@ blocks:
     task:
       secrets:
         - name: do-k8s
-        - name: premium-synchronizer-config
       env_vars:
         - name: KUBECONFIG
           value: /home/semaphore/.kube/dok8s.yaml
+        - name: RELEASE_NAME
+          value: premium-synchronizer-development
       jobs:
         - name: Deploy to Kubernetes
           commands:
             - checkout
             - curl -L https://git.io/get_helm.sh | bash
             - helm upgrade $RELEASE_NAME ./chart
-                --values /home/semaphore/values.yaml
                 --set image.tag=${SEMAPHORE_GIT_SHA}
