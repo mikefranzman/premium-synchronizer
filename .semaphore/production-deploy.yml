@@ -1,5 +1,5 @@
 version: v1.0
-name: Deploy to Development
+name: Deploy to Production
 agent:
   machine:
     type: e1-standard-2
@@ -13,7 +13,7 @@ blocks:
         - name: KUBECONFIG
           value: /home/semaphore/.kube/dok8s.yaml
         - name: RELEASE_NAME
-          value: premium-synchronizer-development
+          value: premium-synchronizer-production
       jobs:
         - name: Deploy to Kubernetes
           commands:
