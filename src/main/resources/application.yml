@@ -1,0 +1,11 @@
+logging:
+  level:
+    root: "INFO"
+mongo:
+  connectionString: "${MONGODB_CONNECTION_STRING}"
+  database: "${MONGODB_DATABASE}"
+chargebee:
+  mirror:
+    baseUrl: "${CHARGEBEE_MIRROR_BASE_URL}"
+    username: "${CHARGEBEE_MIRROR_USERNAME}"
+    password: "${CHARGEBEE_MIRROR_PASSWORD}"
