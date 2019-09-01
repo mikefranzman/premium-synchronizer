@@ -47,7 +47,7 @@ public class SynchronizeTask implements CommandLineRunner {
     }
 
     public static UpgradeStatus determineStatus(AggregateResult result, Subscription subscription) {
-        if(!subscription.isActive()) {
+        if(subscription == null || !subscription.isActive()) {
             return UpgradeStatus.INACTIVE;
         }
 
