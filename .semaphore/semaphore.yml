@@ -17,9 +17,13 @@ blocks:
             - docker build -t ${DOCKER_USERNAME}/${SEMAPHORE_PROJECT_NAME}:${SEMAPHORE_GIT_SHA} .
             - docker push ${DOCKER_USERNAME}/${SEMAPHORE_PROJECT_NAME}:$SEMAPHORE_GIT_SHA
 promotions:
-  - name: Deploy
-    pipeline_file: deploy.yml
+  - name: Deploy to Production
+    pipeline_file: production-deploy.yml
     auto_promote_on:
       - result: passed
         branch:
-         - master
+          - master
+  - name: Deploy to Staging
+    pipeline_file: staging-deploy.yml
+    auto_promote_on:
+      - result: passed
