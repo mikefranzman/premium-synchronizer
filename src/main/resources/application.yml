@@ -7,5 +7,4 @@ mongo:
 chargebee:
   mirror:
     baseUrl: "${CHARGEBEE_MIRROR_BASE_URL}"
-    username: "${CHARGEBEE_MIRROR_USERNAME}"
     password: "${CHARGEBEE_MIRROR_PASSWORD}"
