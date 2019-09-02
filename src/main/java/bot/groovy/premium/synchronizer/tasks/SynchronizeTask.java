@@ -24,7 +24,6 @@ public class SynchronizeTask implements CommandLineRunner {
     @Override
     public void run(String... args) {
         upgradeService.getUpgradedCountByUser()
-            .doOnNext(System.out::println)
             .flatMap(result ->
                 getSubscription(result.getId())
                     .map(subscription -> determineStatus(result, subscription))
