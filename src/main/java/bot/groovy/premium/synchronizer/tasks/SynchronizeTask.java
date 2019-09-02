@@ -24,17 +24,13 @@ public class SynchronizeTask implements CommandLineRunner {
     @Override
     public void run(String... args) {
         upgradeService.getUpgradedCountByUser()
-            .flatMap(result -> {
-                return Mono.zip(
-                    Mono.just(result),
-                    getSubscription(result.getId())
-                );
-            })
-            .map(tuple -> {
-                var status = determineStatus(tuple.getT1(), tuple.getT2());
-                var userId = tuple.getT1().getId();
-                return Tuples.of(userId, status);
-            })
+            .doOnNext(System.out::println)
+            .flatMap(result ->
+                getSubscription(result.getId())
+                    .map(subscription -> determineStatus(result, subscription))
+                    .defaultIfEmpty(UpgradeStatus.INACTIVE)
+                    .map(status -> Tuples.of(result.getId(), status))
+            )
             .collect(Collectors.toMap(Tuple2::getT1, Tuple2::getT2))
             .delayUntil(upgradeService::setStatusForUsers)
             .block();
@@ -47,7 +43,7 @@ public class SynchronizeTask implements CommandLineRunner {
     }
 
     public static UpgradeStatus determineStatus(AggregateResult result, Subscription subscription) {
-        if(subscription == null || !subscription.isActive()) {
+        if(!subscription.isActive()) {
             return UpgradeStatus.INACTIVE;
         }
 
