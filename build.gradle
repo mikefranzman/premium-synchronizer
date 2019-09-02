@@ -20,7 +20,7 @@ dependencies {
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.1.7.RELEASE'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-task', version: '1.2.3.RELEASE'
-    implementation group: 'bot.groovy', name: 'chargebee-commons', version: '0.2'
+    implementation group: 'bot.groovy', name: 'chargebee-commons', version: '0.3'
     implementation group: 'bot.groovy', name: 'spring-commons', version: 'd8907c7'
     implementation group: 'bot.groovy', name: 'chargebee-mirror-client', version: '0.4'
     implementation group: 'org.mongodb', name: 'mongodb-driver-reactivestreams', version: '1.12.0'
