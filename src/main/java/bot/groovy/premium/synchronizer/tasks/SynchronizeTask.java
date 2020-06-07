@@ -27,7 +27,7 @@ public class SynchronizeTask implements CommandLineRunner {
             .flatMap(result ->
                 getSubscription(result.getId())
                     .map(subscription -> determineStatus(result, subscription))
-                    .defaultIfEmpty(UpgradeStatus.INACTIVE)
+                    .defaultIfEmpty(UpgradeStatus.ACTIVE)
                     .map(status -> Tuples.of(result.getId(), status))
             )
             .collect(Collectors.toMap(Tuple2::getT1, Tuple2::getT2))
@@ -43,7 +43,7 @@ public class SynchronizeTask implements CommandLineRunner {
 
     public static UpgradeStatus determineStatus(AggregateResult result, Subscription subscription) {
         if(!subscription.isActive()) {
-            return UpgradeStatus.INACTIVE;
+            return UpgradeStatus.ACTIVE;
         }
 
         var usedUpgrades = result.getCount();
